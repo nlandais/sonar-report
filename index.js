@@ -154,7 +154,7 @@ if (data.sinceLeakPeriod) {
   do {
     const res = request(
       "GET",
-      `${sonarBaseURL}/api/rules/search?activation=true&ps=${pageSize}&p=${page}${filterRule}`,
+      `${sonarBaseURL}/api/rules/search?activation=true&ps=${pageSize}&p=${page}${filterRule}${withOrganization}`,
       options
     );
     page++;
@@ -175,8 +175,8 @@ if (data.sinceLeakPeriod) {
   let page = 1;
   let nbResults;
   do {
-    /** Get all statuses except "REVIEWED". 
-     * Actions in sonarQube vs status in security hotspot (sonar >= 7): 
+    /** Get all statuses except "REVIEWED".
+     * Actions in sonarQube vs status in security hotspot (sonar >= 7):
      * - resolve as reviewed
      *    "resolution": "FIXED"
      *    "status": "REVIEWED"
